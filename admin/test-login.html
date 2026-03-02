@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login Test - Let's Talk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #555;
+        }
+        .credentials {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .credentials strong {
+            color: #e74c3c;
+        }
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Login Test</h1>
+        
+        <div class="test-section">
+            <h3>📋 Test Overview</h3>
+            <p>This page helps you test the admin login functionality for the Let's Talk application.</p>
+            
+            <div class="status info">
+                <strong>Backend Status:</strong> Make sure your Laravel backend is running on <code>http://127.0.0.1:8000</code>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔑 Admin Credentials</h3>
+            <div class="credentials">
+                <strong>Email:</strong> admin@letstalk.com<br>
+                <strong>Password:</strong> admin123
+            </div>
+            <p><em>These credentials are created by the AdminUserSeeder when you run the database migrations.</em></p>
+        </div>
+
+        <div class="test-section">
+            <h3>🧪 Test Steps</h3>
+            <ol>
+                <li>Ensure your Laravel backend is running: <code>php artisan serve</code></li>
+                <li>Make sure you've run the migrations and seeders: <code>php artisan migrate:fresh --seed</code></li>
+                <li>Click the "Test Admin Login" button below to open the login page</li>
+                <li>Use the admin credentials above to log in</li>
+                <li>You should be redirected to the admin dashboard upon successful login</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 Quick Links</h3>
+            <a href="login.html" class="btn">🔐 Test Admin Login</a>
+            <a href="index.html" class="btn">📊 Admin Dashboard</a>
+            <a href="test.html" class="btn">🧪 Admin UI Test</a>
+        </div>
+
+        <div class="test-section">
+            <h3>⚠️ Troubleshooting</h3>
+            <div class="status error">
+                <strong>If login fails:</strong>
+                <ul>
+                    <li>Check that the backend is running on the correct port</li>
+                    <li>Verify that migrations and seeders have been run</li>
+                    <li>Check browser console for any JavaScript errors</li>
+                    <li>Ensure CORS is properly configured in Laravel</li>
+                </ul>
+            </div>
+            
+            <div class="status success">
+                <strong>Backend Commands:</strong>
+                <ul>
+                    <li><code>php artisan migrate:fresh --seed</code> - Reset database and seed data</li>
+                    <li><code>php artisan serve</code> - Start development server</li>
+                    <li><code>php artisan route:list</code> - View all routes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 API Endpoints</h3>
+            <p>The following admin endpoints should be available:</p>
+            <ul>
+                <li><strong>POST</strong> /api/admin/login - Admin login</li>
+                <li><strong>GET</strong> /api/admin/dashboard - Dashboard data (protected)</li>
+                <li><strong>GET</strong> /api/admin/users - User management (protected)</li>
+                <li><strong>GET</strong> /api/admin/settings - Settings management (protected)</li>
+                <li><strong>POST</strong> /api/admin/logout - Admin logout (protected)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Simple test to check if backend is accessible
+        async function testBackend() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/admin/dashboard', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.status === 401) {
+                    console.log('✅ Backend is running (authentication required as expected)');
+                } else {
+                    console.log('⚠️ Backend response:', response.status);
+                }
+            } catch (error) {
+                console.error('❌ Backend connection failed:', error);
+            }
+        }
+
+        // Test backend connection on page load
+        testBackend();
+    </script>
+</body>
+</html>
