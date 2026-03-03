@@ -1,22 +1,33 @@
-# This file is used to define the workflow for Dart
+# This file is used to define the workflow for Flutter mobile app
 
-name: Dart
+name: Flutter
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'mobile/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'mobile/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
     steps:
       - name: Check out the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.19.0'
           channel: stable
 
       - name: Install dependencies
