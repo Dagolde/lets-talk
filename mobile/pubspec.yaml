@@ -68,7 +68,7 @@ dependencies:
   # Utilities
   intl: ^0.20.2
   url_launcher: ^6.2.1
-  device_info_plus: ^11.5.0
+  device_info_plus: ^10.0.0
   package_info_plus: ^8.3.1
   connectivity_plus: ^6.1.5
   path_provider: ^2.1.1
@@ -89,7 +89,7 @@ dependencies:
   fl_chart: ^1.0.0
 
   # Social Features
-  share_plus: ^11.1.0
+  share_plus: ^10.0.0
   flutter_contacts: ^1.1.7+1
 
 dev_dependencies:
